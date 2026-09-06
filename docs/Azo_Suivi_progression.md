@@ -6,11 +6,11 @@
 
 | Tâche | Responsable | Statut | Notes |
 |---|---|---|---|
-| Tokens Tailwind + composants UI de base | Frontend | À faire | |
-| Squelette repository.ts + types/ | Backend | À faire | |
-| Squelette auth.ts (mock) | Backend | À faire | |
-| manifest.json + icônes PWA | Mobile | À faire | |
-| 2 fiches professionnels de test | PO | À faire | |
+| Tokens Tailwind + composants UI de base | Frontend | Fait | BottomNav, SearchBar, ProfessionalCard, AvailabilityBadge, FilterChip, EmptyState, PrimaryButton |
+| Squelette repository.ts + types/ | Backend | Fait | CRUD localStorage, 2 fixtures |
+| Squelette auth.ts (mock) | Backend | Fait | getSession, mockSignInWithGoogle, signOut + tests |
+| manifest.json + icônes PWA | Mobile | Fait | manifest + sw.js + icônes SVG |
+| 2 fiches professionnels de test | PO | Fait | Marc Agossa (plomberie), Fatou Adébayo (couture) |
 
 ## Jour 2 — Parcours client
 

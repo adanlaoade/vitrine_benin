@@ -1,16 +1,48 @@
-# React + Vite
+# Azo — Vitrine Bénin
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Azo** (« travail » en fon) — *La compétence béninoise à portée de main.*
 
-Currently, two official plugins are available:
+Prototype 100 % frontend pour mettre en relation clients et professionnels béninois. Aucun backend, aucune clé secrète : données en localStorage, authentification simulée.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Stack
 
-## React Compiler
+- React 19 + TypeScript strict
+- Vite 8
+- Tailwind CSS 4
+- React Router
+- Vitest
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Commandes
 
-## Expanding the ESLint configuration
+```bash
+npm install
+npm run dev      # serveur de développement
+npm run build    # build de production
+npm run lint     # ESLint
+npm run test     # tests unitaires
+npm run preview  # prévisualiser le build
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Structure
+
+```text
+src/
+  app/              # routes et pages placeholder
+  components/       # UI réutilisable et layout
+  features/         # domaines fonctionnels (search, professionals…)
+  data/fixtures/    # données fictives de démonstration
+  lib/              # repository, auth, availability
+  types/            # types métier partagés
+public/
+  manifest.json     # PWA
+  sw.js               # service worker minimal
+docs/               # spécifications produit et technique
+```
+
+## Déploiement
+
+Compatible Vercel sans variable d'environnement obligatoire.
+
+## Documentation
+
+Voir le dossier `docs/` pour l'architecture, le modèle de données, la spec UX/UI et le plan de prototype sur 6 jours.
