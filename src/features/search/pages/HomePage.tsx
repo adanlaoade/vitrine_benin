@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { FilterChip } from '@/components/ui/FilterChip'
 import { PageContainer } from '@/components/layout/PageContainer'
 import { SearchBar } from '@/features/search/components/SearchBar'
-import { ProfessionalCard } from '@/features/professionals/components/ProfessionalCard'
+import { FavoriteProfessionalCard } from '@/features/professionals/components/FavoriteProfessionalCard'
 import { EmptyState } from '@/components/ui/EmptyState'
 import { CATEGORIES, CITIES } from '@/data/fixtures/professionals.fixture'
 import { listProfessionals } from '@/lib/repository'
@@ -103,11 +103,10 @@ export function HomePage() {
         {!loading && !error && nearby.length > 0 && (
           <div className="space-y-3">
             {nearby.map((pro) => (
-              <ProfessionalCard
+              <FavoriteProfessionalCard
                 key={pro.id}
                 professional={pro}
                 onPress={(id) => navigate(`/professionnel/${id}`)}
-                showActions={false}
               />
             ))}
           </div>

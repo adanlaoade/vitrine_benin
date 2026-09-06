@@ -85,6 +85,24 @@ export function getProfessionalById(
   }
 }
 
+/** Returns full profile including private fields — for the owner only */
+export function getOwnedProfessional(
+  userId: string,
+): RepositoryResponse<Professional | null> {
+  try {
+    const data = loadData()
+    const found = data.professionals.find((p) => p.id === userId)
+    return { ok: true, data: found ?? null }
+  } catch {
+    return { ok: false, error: 'Impossible de charger votre profil.' }
+  }
+}
+
+export function hasProfessionalProfile(userId: string): boolean {
+  const data = loadData()
+  return data.professionals.some((p) => p.id === userId)
+}
+
 export function saveProfessionalProfile(
   profile: Professional,
 ): RepositoryResponse<Professional> {

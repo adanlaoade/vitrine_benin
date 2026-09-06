@@ -1,14 +1,5 @@
 import type { Professional } from '@/types'
-
-const defaultWeeklySlots = [
-  { day: 1 as const, start: '08:00', end: '18:00', enabled: true },
-  { day: 2 as const, start: '08:00', end: '18:00', enabled: true },
-  { day: 3 as const, start: '08:00', end: '18:00', enabled: true },
-  { day: 4 as const, start: '08:00', end: '18:00', enabled: true },
-  { day: 5 as const, start: '08:00', end: '18:00', enabled: true },
-  { day: 6 as const, start: '09:00', end: '14:00', enabled: true },
-  { day: 0 as const, start: '09:00', end: '12:00', enabled: false },
-]
+import { DEFAULT_WEEKLY_SLOTS } from '@/lib/schedule-defaults'
 
 export const seedProfessionals: Professional[] = [
   {
@@ -33,7 +24,7 @@ export const seedProfessionals: Professional[] = [
     distanceKm: 2.3,
     availability: {
       timezone: 'Africa/Porto-Novo',
-      weeklySlots: defaultWeeklySlots,
+      weeklySlots: DEFAULT_WEEKLY_SLOTS,
       manualOverride: 'on',
       defaultPosture: 'available_now',
     },
@@ -80,7 +71,7 @@ export const seedProfessionals: Professional[] = [
     distanceKm: 4.1,
     availability: {
       timezone: 'Africa/Porto-Novo',
-      weeklySlots: defaultWeeklySlots,
+      weeklySlots: DEFAULT_WEEKLY_SLOTS,
       manualOverride: null,
       defaultPosture: 'follow_schedule',
     },
