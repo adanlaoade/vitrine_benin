@@ -30,6 +30,8 @@ export function TrouverPage() {
 
   const queryFromUrl = searchParams.get('q') ?? ''
   const categoryFromUrl = searchParams.get('category') ?? undefined
+  const sourceFromUrl =
+    searchParams.get('source') === 'voice' ? 'voice' : 'text'
 
   const [query, setQuery] = useState(queryFromUrl)
   const [intent, setIntent] = useState<SearchIntent | null>(null)

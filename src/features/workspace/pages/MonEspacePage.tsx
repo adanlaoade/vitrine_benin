@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { PageContainer } from '@/components/layout/PageContainer'
 import { OnboardingFlow } from '@/features/onboarding/components/OnboardingFlow'
+import { ClientSpaceView } from '@/features/workspace/components/ClientSpaceView'
 import { WorkspaceView } from '@/features/workspace/components/WorkspaceView'
 import { useAuth } from '@/features/auth/AuthProvider'
 import { getOwnedProfessional } from '@/lib/repository'
@@ -41,9 +42,17 @@ export function MonEspacePage() {
     return (
       <PageContainer
         title="Mon espace"
-        subtitle="Gérez votre profil, horaires et portfolio"
+        subtitle="Tableau de bord et gestion de votre activité"
       >
         <WorkspaceView profile={profile} onProfileUpdate={setProfile} />
+      </PageContainer>
+    )
+  }
+
+  if (session) {
+    return (
+      <PageContainer title="Mon espace" subtitle="Vos favoris et votre compte">
+        <ClientSpaceView onProfileCreated={setProfile} />
       </PageContainer>
     )
   }

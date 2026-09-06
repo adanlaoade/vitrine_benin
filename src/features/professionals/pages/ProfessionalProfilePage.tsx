@@ -15,6 +15,11 @@ import {
   formatWhatsAppLink,
 } from '@/lib/formatters'
 import { getProfessionalById } from '@/lib/repository'
+import {
+  incrementPhoneClick,
+  incrementProfileView,
+  incrementWhatsAppClick,
+} from '@/lib/stats'
 import type { Professional } from '@/types'
 
 function formatLocation(pro: Professional): string {
@@ -48,6 +53,7 @@ export function ProfessionalProfilePage() {
       setError('Professionnel introuvable.')
     } else {
       setProfessional(result.data)
+      incrementProfileView(id)
     }
     setLoading(false)
   }, [id])
@@ -147,7 +153,12 @@ export function ProfessionalProfilePage() {
       </header>
 
       <section className="mb-6 grid grid-cols-2 gap-2" aria-label="Actions de contact">
-        <ContactGate onAuthorized={() => { window.location.href = formatPhoneLink(professional.phone) }}>
+        <ContactGate
+          onAuthorized={() => {
+            incrementPhoneClick(professional.id)
+            window.location.href = formatPhoneLink(professional.phone)
+          }}
+        >
           {({ trigger }) => (
             <PrimaryButton fullWidth onClick={trigger}>
               Appeler
@@ -156,6 +167,7 @@ export function ProfessionalProfilePage() {
         </ContactGate>
         <ContactGate
           onAuthorized={() => {
+            incrementWhatsAppClick(professional.id)
             window.open(formatWhatsAppLink(professional.whatsapp), '_blank', 'noopener,noreferrer')
           }}
         >

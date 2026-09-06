@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { getSession } from '@/lib/auth'
 import { isFavorite, toggleFavorite } from '@/lib/repository'
+import { incrementFavoriteReceived } from '@/lib/stats'
 import { useAuth } from '@/features/auth/AuthProvider'
 
 export function useFavorite(professionalId: string) {
@@ -36,6 +37,9 @@ export function useFavorite(professionalId: string) {
       const result = toggleFavorite(userId, professionalId)
       if (result.ok) {
         setFavorited(result.data)
+        if (!wasFavorite && result.data) {
+          incrementFavoriteReceived(professionalId)
+        }
         if (wasFavorite && !result.data) {
           setToast('Retiré des favoris')
         }

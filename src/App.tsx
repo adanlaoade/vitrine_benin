@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { AppHeader } from '@/components/layout/AppHeader'
 import { BottomNav } from '@/components/layout/BottomNav'
-import { DemandesPage } from '@/app/pages/PlaceholderPages'
+import { DemandesPage } from '@/features/requests/pages/DemandesPage'
 import { MonEspacePage } from '@/features/workspace/pages/MonEspacePage'
 import { AuthProvider } from '@/features/auth/AuthProvider'
 import { ProfessionalProfilePage } from '@/features/professionals/pages/ProfessionalProfilePage'

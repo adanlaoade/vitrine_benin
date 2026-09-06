@@ -11,7 +11,9 @@ import {
   TextInput,
 } from '@/features/onboarding/components/FormFields'
 import { AvailabilityToggle } from '@/features/workspace/components/AvailabilityToggle'
+import { FavoritesList } from '@/features/workspace/components/FavoritesList'
 import { PortfolioManager } from '@/features/workspace/components/PortfolioManager'
+import { ProDashboard } from '@/features/workspace/components/ProDashboard'
 import { TrainingManager } from '@/features/workspace/components/TrainingManager'
 import { WeeklyScheduleEditor } from '@/features/workspace/components/WeeklyScheduleEditor'
 import { saveProfessionalProfile } from '@/lib/repository'
@@ -23,9 +25,18 @@ interface WorkspaceViewProps {
   onProfileUpdate: (profile: Professional) => void
 }
 
-type Section = 'profil' | 'disponibilite' | 'horaires' | 'realisations' | 'formations'
+type Section =
+  | 'dashboard'
+  | 'favoris'
+  | 'profil'
+  | 'disponibilite'
+  | 'horaires'
+  | 'realisations'
+  | 'formations'
 
 const SECTIONS: { id: Section; label: string }[] = [
+  { id: 'dashboard', label: 'Tableau de bord' },
+  { id: 'favoris', label: 'Mes favoris' },
   { id: 'profil', label: 'Profil' },
   { id: 'disponibilite', label: 'Disponibilité' },
   { id: 'horaires', label: 'Horaires' },
@@ -36,7 +47,7 @@ const SECTIONS: { id: Section; label: string }[] = [
 export function WorkspaceView({ profile, onProfileUpdate }: WorkspaceViewProps) {
   const { session, signOut } = useAuth()
   const [draft, setDraft] = useState(profile)
-  const [section, setSection] = useState<Section>('profil')
+  const [section, setSection] = useState<Section>('dashboard')
   const [saved, setSaved] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -101,6 +112,17 @@ export function WorkspaceView({ profile, onProfileUpdate }: WorkspaceViewProps) 
           </button>
         ))}
       </div>
+
+      {section === 'dashboard' && <ProDashboard profile={draft} />}
+
+      {section === 'favoris' && (
+        <section aria-labelledby="pro-favorites-heading">
+          <h2 id="pro-favorites-heading" className="mb-3 text-base font-semibold text-text">
+            Mes favoris
+          </h2>
+          <FavoritesList />
+        </section>
+      )}
 
       {section === 'profil' && (
         <div className="space-y-4">
@@ -203,9 +225,15 @@ export function WorkspaceView({ profile, onProfileUpdate }: WorkspaceViewProps) 
         />
       )}
 
-      <PrimaryButton fullWidth onClick={handleSave}>
-        Enregistrer les modifications
-      </PrimaryButton>
+      {(section === 'profil' ||
+        section === 'disponibilite' ||
+        section === 'horaires' ||
+        section === 'realisations' ||
+        section === 'formations') && (
+        <PrimaryButton fullWidth onClick={handleSave}>
+          Enregistrer les modifications
+        </PrimaryButton>
+      )}
 
       <PrimaryButton variant="ghost" fullWidth onClick={signOut}>
         Se déconnecter

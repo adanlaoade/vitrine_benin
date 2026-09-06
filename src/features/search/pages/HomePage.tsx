@@ -27,8 +27,11 @@ export function HomePage() {
     setLoading(false)
   }, [])
 
-  const handleSearch = (query: string) => {
-    navigate(`/trouver?q=${encodeURIComponent(query)}`)
+  const handleSearch = (value: string, source: 'text' | 'voice' = 'text') => {
+    const params = new URLSearchParams()
+    params.set('q', value)
+    if (source === 'voice') params.set('source', 'voice')
+    navigate(`/trouver?${params.toString()}`)
   }
 
   const nearby = professionals.slice(0, 4)
